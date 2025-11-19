@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(Clang) Launch Myrmidon",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Myrmidon.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "miDebuggerPath": "lldb.exe",
+            "setupCommands": [
+                { "text": "-enable-pretty-printing" }
+            ],
+            "preLaunchTask": "CMake: Build"
+        }
+    ]
+}
