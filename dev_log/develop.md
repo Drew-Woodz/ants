@@ -20,3 +20,13 @@
 1. Raylib vs SFML vs SDL2+Dear ImGui – which ecosystem are you most comfortable with?
 2. How many ants do you personally want to see on screen before it feels “alive”? (this drives grid size vs detail trade-off)
 3. Real-time vs turn-based: do we advance simulation every frame (true real-time) or in fixed 0.1 s ticks for determinism?
+
+## Sprint 0 Retrospective – Decisions Locked (Nov 19, 2025)
+
+- Compiler: LLVM Clang 21.1.5 (primary) + MSVC fallback for faster Windows builds
+- Build: CMake + Ninja (preferred) / Visual Studio generator (current working)
+- Graphics: Raylib 5.6-dev confirmed — zero dependencies, perfect Pi5 support
+- Asset pipeline: Post-build copy via $<TARGET_FILE_DIR> — works across generators
+- Branching: GitFlow (main = golden releases, develop = integration)
+- First green executable achieved with real ant.png sprite
+- Lesson learned: Windows toolchain is spicy — hybrid MSVC/Clang workflow adopted
