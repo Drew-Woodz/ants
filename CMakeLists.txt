@@ -10,20 +10,28 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compile_options(-Weverything -Werror -Wno-c++98-compat -Wno-padded -Wno-exit-time-destructor)
 endif()
 
+# Dependencies
 add_subdirectory(external/raylib)
 add_subdirectory(external/json)
 
+# Executable
 add_executable(Myrmidon
     src/main.cpp
+    src/PheromoneGrid.cpp   # <-- ADD THIS LINE (you forgot!)
 )
 
-target_link_libraries(Myrmidon PRIVATE raylib)
+target_include_directories(Myrmidon PRIVATE src)
 
-# Copy assets folder at build time – works with Ninja AND Visual Studio generators
+target_link_libraries(Myrmidon PRIVATE 
+    raylib 
+    nlohmann_json::nlohmann_json
+)
+
+# Post-build asset/config copy – works with both Ninja and VS generators
 add_custom_command(TARGET Myrmidon POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${CMAKE_SOURCE_DIR}/assets"
-        "$<TARGET_FILE_DIR:Myrmidon>/assets"
-        "${CMAKE_SOURCE_DIR}/config"
-        "$<TARGET_FILE_DIR:Myrmidon>/config"
+        "${CMAKE_SOURCE_DIR}/assets" "$<TARGET_FILE_DIR:Myrmidon>/assets"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/config"  "$<TARGET_FILE_DIR:Myrmidon>/config"
+    COMMENT "Copying assets and config to output directory"
 )
