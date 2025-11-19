@@ -24,4 +24,6 @@ add_custom_command(TARGET Myrmidon POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_SOURCE_DIR}/assets"
         "$<TARGET_FILE_DIR:Myrmidon>/assets"
+        "${CMAKE_SOURCE_DIR}/config"
+        "$<TARGET_FILE_DIR:Myrmidon>/config"
 )

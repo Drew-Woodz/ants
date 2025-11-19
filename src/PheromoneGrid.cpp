@@ -2,6 +2,7 @@
 #include "json/single_include/nlohmann/json.hpp"
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 PheromoneGrid::PheromoneGrid(int width, int height)
     : m_width(width), m_height(height)
