@@ -11,6 +11,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 add_subdirectory(external/raylib)
+add_subdirectory(external/json)
 
 add_executable(Myrmidon
     src/main.cpp
