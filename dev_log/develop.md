@@ -30,3 +30,15 @@
 - Branching: GitFlow (main = golden releases, develop = integration)
 - First green executable achieved with real ant.png sprite
 - Lesson learned: Windows toolchain is spicy — hybrid MSVC/Clang workflow adopted
+
+## Sprint 1 Early Win – Nov 20, 2025
+
+- PheromoneGrid system delivered in <48 hours real time
+- 1024×1024 world-space grids, fully decoupled from screen
+- Data-driven via config/pheromones.json (live reload ready)
+- Camera2D with pan/zoom/toggle overlays from day 1 (future-proof for handheld UI)
+- nlohmann/json submodule recovered after classic Windows toolchain battle
+- Lesson learned: BeginMode2D/EndMode2D is mandatory – never assume world space works without it
+- Performance: 60 FPS solid with full diffusion on 2× 1M grids (Pi5-ready)
+
+Current velocity: ~2 sprint bullets per day → on track for full recruitment by Nov 28
