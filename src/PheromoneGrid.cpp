@@ -1,5 +1,5 @@
 #include "PheromoneGrid.h"
-#include "json/single_include/nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 #include <fstream>
 #include <iostream>
 #include <algorithm>

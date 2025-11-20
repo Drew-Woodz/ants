@@ -50,7 +50,8 @@ int main()
         ClearBackground(RAYWHITE);
 
         // Sand background (still there!)
-        DrawRectangle(0, 0, screenWidth, screenHeight, (Color){194, 154, 94, 255});
+        constexpr Color SAND_COLOR{194, 154, 94, 255};
+        DrawRectangle(0, 0, screenWidth, screenHeight, SAND_COLOR);
 
         BeginMode2D(camera);
 
