@@ -23,11 +23,19 @@ int main()
 
     while (!WindowShouldClose())
     {
+        if (IsKeyPressed(KEY_F1)) showFood = !showFood;
+        if (IsKeyPressed(KEY_F2)) showHome = !showHome;
+
         // Mouse painting (hold left = food, right = home)
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
             Vector2 worldPos = GetScreenToWorld2D(GetMousePosition(), camera);
-            foodGrid.add_pheromone((int)worldPos.x, (int)worldPos.y, 10.0f);
+            int wx = (int)worldPos.x;
+            int wy = (int)worldPos.y;
+            for (int y = -20; y <= 20; ++y)
+                for (int x = -20; x <= 20; ++x)
+                    if (x*x + y*y < 400)
+                        foodGrid.add_pheromone(wx + x, wy + y, 8.0f);
         }
         if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
         {
@@ -49,21 +57,22 @@ int main()
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        // Sand background (still there!)
         constexpr Color SAND_COLOR{194, 154, 94, 255};
         DrawRectangle(0, 0, screenWidth, screenHeight, SAND_COLOR);
 
-        BeginMode2D(camera);
+        BeginMode2D(camera);   // ← THIS WAS MISSING
 
-        if (showFood) foodGrid.draw_debug(camera, RED);
-        if (showHome) homeGrid.draw_debug(camera, BLUE);
+            if (showFood) foodGrid.draw_debug(camera, RED);
+            if (showHome) homeGrid.draw_debug(camera, BLUE);
 
-        // Placeholder ant in center
-        DrawTexturePro(ant, Rectangle{0,0,(float)ant.width,(float)ant.height},
-                       Rectangle{512, 512, 64, 64}, Vector2{32,32}, 0.0f, WHITE);
+            // Placeholder ant in world center (512,512)
+            DrawTexturePro(ant,
+                Rectangle{0,0,(float)ant.width,(float)ant.height},
+                Rectangle{512, 512, 64, 64}, Vector2{32,32}, 0.0f, WHITE);
 
-        EndMode2D();
+        EndMode2D();           // ← AND THIS
 
+        // UI overlay is always screen-space
         DrawFPS(10, 10);
         DrawText("Hold LMB/RMB to paint • WASD + Wheel • F1/F2 toggle", 10, 40, 20, DARKGRAY);
 
