@@ -51,15 +51,21 @@ int main()
         if (IsKeyPressed(KEY_F2)) showHome = !showHome;
 
         // Mouse painting (world space!)
-        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
         {
-            Vector2 worldPos = GetScreenToWorld2D(GetMousePosition(), camera);
+            Vector2 mouse = GetMousePosition();
+            Vector2 worldPos = GetScreenToWorld2D(mouse, camera);   // ← THIS IS THE FIX
+
             int wx = (int)worldPos.x;
             int wy = (int)worldPos.y;
+
+            PheromoneGrid& target = IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? foodGrid : homeGrid;
+            Color debugColor = IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? RED : BLUE;
+
             for (int y = -20; y <= 20; ++y)
                 for (int x = -20; x <= 20; ++x)
                     if (x*x + y*y < 400)
-                        foodGrid.add_pheromone(wx + x, wy + y, 8.0f);
+                        target.add_pheromone(wx + x, wy + y, 12.0f);
         }
         if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
         {

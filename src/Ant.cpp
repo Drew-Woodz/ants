@@ -72,7 +72,7 @@ void Ant::update(float dt,
     else
     {
         desired_turn = ((GetRandomValue(0, 1) == 0) ? -1.0f : 1.0f)
-                     * cfg.wander_strength * 3.0f * wander_bias;
+                     * cfg.wander_strength * wander_bias;
     }
 
     angle += desired_turn * dt;
@@ -101,7 +101,7 @@ void Ant::draw(const Camera2D& camera, const Texture2D& tex) const
     Rectangle source{0, 0, (float)tex.width, (float)tex.height};
     Rectangle dest{pos.x, pos.y, 64.0f, 64.0f};
     Vector2 origin{32.0f, 32.0f};
-    float rotation = angle * RAD2DEG;
+    float rotation = angle * RAD2DEG + 90.0f;
 
     Color tint = (state == AntState::Returning) ? SKYBLUE : WHITE;
 
