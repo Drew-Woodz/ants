@@ -1,5 +1,5 @@
 {
     "evaporation_rate": 0.99,
-    "diffusion_rate": 0.08,
+    "diffusion_rate": 0.02,
     "max_value": 1000.0
 }

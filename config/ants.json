@@ -1,0 +1,13 @@
+
+{
+    "speed":              80.0,
+    "turn_rate":          6.5,
+    "sensor_angle":       0.785,
+    "sensor_distance":    9.0,
+    "sensor_width":       3,
+    "lay_rate_food":      0.0,
+    "lay_rate_home":      80.0,
+    "lay_rate_home_carrying": 120.0,
+    "evaporate_lay":      true,
+    "random_wander_strength": 0.2
+}
